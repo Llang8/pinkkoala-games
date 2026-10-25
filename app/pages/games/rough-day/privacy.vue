@@ -29,7 +29,11 @@ useSeoMeta({
     <ul>
       <li>No accounts, sign-in, names, email addresses, phone numbers, contacts, photos, microphone or location.</li>
       <li>Your progress and settings stay on your device.</li>
-      <li>The Android app uses Google Firebase Analytics to learn how the game is played, so we can balance and fix it.</li>
+      <li>
+        The Android and iOS apps use Google Firebase Analytics to learn how the game is played, so we can balance and
+        fix it. <mark>[CHECK]</mark> Confirm Firebase is in the iOS build and fill in Apple's App Privacy details to
+        match.
+      </li>
       <li>We do not sell data and do not share it for advertising.</li>
     </ul>
 
@@ -92,9 +96,10 @@ useSeoMeta({
 
       <h2>Ads</h2>
       Rough Day may show ads through Google AdMob (interstitials at stage changes and an optional rewarded "+strokes" ad).
-      AdMob may collect the Android advertising ID and related data. Players in the EEA, UK and Switzerland are asked for
-      consent through Google's User Messaging Platform. You can reset your advertising ID or opt out of personalisation in
-      Android settings. No ads are shown in a player's first session.
+      AdMob may collect the advertising ID (Android) or IDFA (iOS, only if you allow it in Apple's tracking prompt) and
+      related data. Players in the EEA, UK and Switzerland are asked for consent through Google's User Messaging
+      Platform. You can reset your advertising ID or opt out of personalisation in your device settings. No ads are
+      shown in a player's first session.
     -->
 
     <h2>Children</h2>

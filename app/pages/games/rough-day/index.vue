@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { site } from '~/data/site'
-import { games } from '~/data/games'
+import { games, isLive as gameIsLive } from '~/data/games'
 
 const game = games.find((g) => g.slug === 'rough-day')!
-const isLive = game.status === 'live'
+const isLive = gameIsLive(game)
 const base = '/games/rough-day'
 
 const title = 'Rough Day: Roguelite Mini Golf'
 const description =
-  'Share one stroke bank across every hole, buy power-ups that level up, and escape the grumpy Groundskeeper. A roguelite mini golf game for Android.'
+  'Share one stroke bank across every hole, buy power-ups that level up, and escape the grumpy Groundskeeper. A roguelite mini golf game for Android and iOS.'
 
 useSeoMeta({
   title,
@@ -49,6 +49,10 @@ const stages = [
 ]
 
 const shots = [
+  { file: 'ui-course.jpg', alt: 'A course overview in the Meadow with the stroke and coin counters at the top' },
+  { file: 'ui-menu.jpg', alt: 'The Rough Day main menu with Continue, New Run, How to Play, Upgrades and Locker' },
+  { file: 'ui-shop.jpg', alt: 'The Pro Shop offering Big Cup, Second Wind and Chip Shot power-ups' },
+  { file: 'ui-upgrades.jpg', alt: 'The Upgrades screen where silver buys permanent power-ups' },
   { file: 'shot-chip-hop_ramp-jump.jpg', alt: 'A bright meadow hole with a ramp, trees and a pond' },
   { file: 'shot-chip-hop_rock-garden.jpg', alt: 'A meadow hole guarded by a windmill' },
   { file: 'shot-chip-hop_millstone.jpg', alt: 'An autumn orchard hole with amber trees and a pond' },
@@ -80,9 +84,7 @@ const clips = [
             One shared bank of strokes. Waste them and it is dawn again.
           </p>
           <div class="cta">
-            <a v-if="isLive" class="btn" :href="game.storeUrl" rel="noopener">Get it on Google Play</a>
-            <span v-else class="btn" aria-disabled="true">Coming soon to Google Play</span>
-            <span class="badge">{{ game.platforms.join(' · ') }}</span>
+            <StoreButtons :game="game" />
           </div>
         </div>
         <div class="phone">
@@ -177,6 +179,15 @@ const clips = [
       </div>
     </section>
 
+    <!-- Bosses -->
+    <section class="wrap sec" aria-labelledby="bosses-h">
+      <h2 id="bosses-h">Meet the bosses</h2>
+      <p class="sec-lead">
+        Every stage ends at a boss gate, and every gate has someone guarding it. Strike every padlock to get past.
+      </p>
+      <BossStage />
+    </section>
+
     <!-- Screenshots -->
     <section class="sec" aria-labelledby="shots-h">
       <div class="wrap"><h2 id="shots-h">Screenshots</h2></div>
@@ -201,11 +212,10 @@ const clips = [
       <div class="wrap">
         <h2>Can you break the loop?</h2>
         <p>
-          <span v-if="isLive">Rough Day is out now on Google Play.</span>
-          <span v-else>Rough Day is coming to Android. Questions or press? <a :href="`mailto:${site.email}`">{{ site.email }}</a></span>
+          <span v-if="isLive">Rough Day is out now.</span>
+          <span v-else>Rough Day is coming to Android and iOS. Questions or press? <a :href="`mailto:${site.email}`">{{ site.email }}</a></span>
         </p>
-        <a v-if="isLive" class="btn" :href="game.storeUrl" rel="noopener">Get it on Google Play</a>
-        <span v-else class="btn" aria-disabled="true">Coming soon to Google Play</span>
+        <div class="closer-stores"><StoreButtons :game="game" /></div>
       </div>
     </section>
 
@@ -213,6 +223,7 @@ const clips = [
       <p>
         Art and sound by <a href="https://kenney.nl" rel="noopener">Kenney</a> (CC0).
         <NuxtLink :to="`${base}/privacy/`">Privacy policy</NuxtLink> ·
+        <NuxtLink to="/terms/">Terms of Service</NuxtLink> ·
         <NuxtLink to="/support/">Support</NuxtLink> · A game by <NuxtLink to="/">{{ site.name }}</NuxtLink>
       </p>
     </section>
@@ -270,19 +281,15 @@ const clips = [
   align-items: center;
   margin-top: 24px;
 }
-.hero .btn {
+.hero :deep(.btn) {
   background: var(--rd-flag);
   color: #fff;
   box-shadow: 0 4px 0 #a52a2a;
 }
-.hero .btn[aria-disabled='true'] {
+.hero :deep(.btn[aria-disabled='true']) {
   background: rgba(255, 255, 255, 0.18);
   color: #fff;
   box-shadow: none;
-}
-.hero .badge {
-  background: rgba(255, 255, 255, 0.18);
-  color: #fff;
 }
 
 .phone {
@@ -433,8 +440,14 @@ const clips = [
   height: min(480px, 70vh);
   width: auto;
   aspect-ratio: 9 / 16;
+  object-fit: cover;
   border-radius: 22px;
   box-shadow: var(--shadow);
+}
+
+.closer-stores {
+  display: flex;
+  justify-content: center;
 }
 
 .closer {
@@ -443,12 +456,12 @@ const clips = [
   text-align: center;
   padding-block: clamp(40px, 8vw, 72px);
 }
-.closer .btn {
+.closer :deep(.btn) {
   background: var(--rd-flag);
   color: #fff;
   box-shadow: 0 4px 0 #a52a2a;
 }
-.closer .btn[aria-disabled='true'] {
+.closer :deep(.btn[aria-disabled='true']) {
   background: rgba(255, 255, 255, 0.18);
   box-shadow: none;
 }

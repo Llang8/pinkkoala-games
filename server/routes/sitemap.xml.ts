@@ -7,6 +7,7 @@ export default defineEventHandler((event) => {
     '/',
     '/support/',
     '/privacy/',
+    ...(site.privacyIsDraft ? [] : ['/terms/']), // the draft terms page is noindex
     ...games.flatMap((g) => [gamePath(g.slug)]),
   ]
   const urls = paths.map((p) => `  <url><loc>${site.url}${p}</loc></url>`).join('\n')

@@ -10,6 +10,7 @@ const year = new Date().getFullYear()
       <nav aria-label="Footer">
         <NuxtLink to="/support/">Support</NuxtLink>
         <NuxtLink to="/privacy/">Privacy</NuxtLink>
+        <NuxtLink to="/terms/">Terms</NuxtLink>
         <a :href="`mailto:${site.email}`">{{ site.email }}</a>
       </nav>
     </div>

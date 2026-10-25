@@ -27,6 +27,9 @@ useSeoMeta({
       </li>
     </ul>
 
+    <h2>Terms</h2>
+    <p>The rules for using this website and our games are in our <NuxtLink to="/terms/">Terms of Service</NuxtLink>.</p>
+
     <h2>Contact</h2>
     <p>
       Questions or requests about your data: <a :href="`mailto:${site.email}`">{{ site.email }}</a>.

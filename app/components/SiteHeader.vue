@@ -39,7 +39,6 @@ import { site } from '~/data/site'
 .logo {
   width: 40px;
   height: 40px;
-  border-radius: 12px;
 }
 nav {
   display: flex;
