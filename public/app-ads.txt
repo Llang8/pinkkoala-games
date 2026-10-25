@@ -1,0 +1,3 @@
+# PLACEHOLDER: paste the ad network publisher line here when ads are added.
+# For AdMob it looks like: google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+# AdMob checks this file at the root of the developer website listed on the Play listing.
