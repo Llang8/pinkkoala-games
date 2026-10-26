@@ -46,7 +46,7 @@ To add a game: add an entry to `games.ts`, then create `app/pages/games/<slug>/i
 - `app/data/games.ts`: `stores.play` and `stores.appStore` (set the URL when each store listing is live).
 - `app/pages/games/rough-day/privacy.vue`: every `[CHECK]` (analytics opt-out toggle, Firebase retention period, legal bases).
 - `public/app-ads.txt`: the AdMob line when ads ship.
-- Social images `public/og-default.png` and `public/games/rough-day/og.png` are simple placeholders.
+- Social images `public/og-default.png` and `public/games/rough-day/og.jpg` are simple placeholders.
 - Rough Day screenshots (public/games/rough-day/ui-*.jpg) and the gallery frames are low-res placeholders captured from the dev build and trick-shot clips; swap in proper phone screenshots (Android and iOS) before launch.
 - `app/pages/terms/index.vue`: every `[CHECK]` (legal name and country, governing law, payments/ads wording).
 - `app/lib/bossModels.js` is a copy of the game's boss models (`src/course/bossModels.js` plus the Groundskeeper from `CourseBuilder.js`) used by the three.js boss stage. Re-copy it if the game's bosses change.

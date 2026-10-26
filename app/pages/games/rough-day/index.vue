@@ -15,7 +15,7 @@ useSeoMeta({
   description,
   ogTitle: title,
   ogDescription: description,
-  ogImage: `${site.url}${base}/og.png`,
+  ogImage: `${site.url}${base}/og.jpg`,
   ogType: 'website',
   twitterCard: 'summary_large_image',
 })
