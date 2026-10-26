@@ -1,6 +1,7 @@
 [build]
   command = "npm run generate"
-  publish = ".output/public"
+  # Nuxt switches to its netlify-static preset on Netlify, which writes to dist (locally it is .output/public).
+  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "24"
