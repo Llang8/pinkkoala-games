@@ -58,11 +58,11 @@ useSeoMeta({
       that happens.
     </p>
 
-    <h2>Our content and third-party credits</h2>
+    <h2>Our content</h2>
     <p>
       The games, this website and everything in them (code, art we made, audio we made, names and logos) belong to us or
       our licensors and are protected by copyright and other laws. "PinkKoala" and "Rough Day" are names we use for our
-      studio and game. Some artwork and audio in Rough Day is by Kenney (kenney.nl) and released under CC0.
+      studio and game.
     </p>
 
     <h2>Feedback</h2>

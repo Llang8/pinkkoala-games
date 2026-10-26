@@ -221,7 +221,6 @@ const clips = [
 
     <section class="wrap credits">
       <p>
-        Art and sound by <a href="https://kenney.nl" rel="noopener">Kenney</a> (CC0).
         <NuxtLink :to="`${base}/privacy/`">Privacy policy</NuxtLink> ·
         <NuxtLink to="/terms/">Terms of Service</NuxtLink> ·
         <NuxtLink to="/support/">Support</NuxtLink> · A game by <NuxtLink to="/">{{ site.name }}</NuxtLink>

@@ -131,7 +131,5 @@ useSeoMeta({
     <ul>
       <li>{{ site.privacyUpdated }}: first draft.</li>
     </ul>
-
-    <p class="meta">Artwork and audio by Kenney (kenney.nl), CC0.</p>
   </div>
 </template>
