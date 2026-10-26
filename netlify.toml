@@ -3,7 +3,7 @@
   publish = ".output/public"
 
 [build.environment]
-  NODE_VERSION = "22"
+  NODE_VERSION = "24"
 
 # Optional: serve the Rough Day page at the root of a separate domain (e.g. roughday.game).
 # Set ROUGH_DAY_HOSTS in Netlify (Site configuration > Environment variables), comma separated,

@@ -31,7 +31,7 @@ To add a game: add an entry to `games.ts`, then create `app/pages/games/<slug>/i
 ## Deploy on Netlify
 
 1. Push this repo to GitHub.
-2. Netlify: **Add new site > Import an existing project**, pick the repo. `netlify.toml` already sets the build command (`npm run generate`), publish directory (`.output/public`) and Node 22.
+2. Netlify: **Add new site > Import an existing project**, pick the repo. `netlify.toml` already sets the build command (`npm run generate`), publish directory (`.output/public`) and Node 24.
 3. **Domain management > Add a domain**: `pinkkoala.games`. Either use Netlify DNS (change the nameservers at Porkbun to the ones Netlify shows) or add the DNS records Netlify lists in Porkbun's DNS panel. HTTPS turns on automatically once DNS resolves.
 
 ## Pointing a separate Rough Day domain at the game page
