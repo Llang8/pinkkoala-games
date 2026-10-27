@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { site } from '~/data/site'
 import { games, isLive as gameIsLive } from '~/data/games'
+import { clips } from '~/data/clips'
 
 const game = games.find((g) => g.slug === 'rough-day')!
 const isLive = gameIsLive(game)
@@ -49,19 +50,16 @@ const shots = [
   { file: 'ui-shop.jpg', alt: 'The Pro Shop showing power cards with prices, and how many of your power-up slots are in use' },
   { file: 'ui-difficulty.jpg', alt: 'Choosing Easy, Normal or Hard before a run' },
   { file: 'ui-menu.jpg', alt: 'The Rough Day main menu with the grumpy Groundskeeper looming behind it' },
-  { file: 'shot-chip-hop_ramp-jump.jpg', alt: 'A bright meadow hole with a ramp, trees and a pond' },
-  { file: 'shot-chip-hop_millstone.jpg', alt: 'An autumn orchard hole with amber trees and a pond' },
-  { file: 'shot-chip-hop_crevasse-blizzard.jpg', alt: 'An icy green under the northern lights in the Frostbite Peaks' },
-  { file: 'shot-chip-hop_cannon-crossing.jpg', alt: 'A winding frozen fairway with a red flag at the end' },
+  { file: 'clips/meadow-ramp-jump-fire-double.jpg', alt: 'A fire-boosted ball streaking past a ramp in the sunny Meadow' },
+  { file: 'clips/orchard-harvest-hill-chip-fire-double.jpg', alt: 'A flaming ball chipping over a hill in the Amber Orchard' },
+  { file: 'clips/frostbite-frozen-hairpin-chip-fire-double.jpg', alt: 'A flaming ball on an icy fairway under the northern lights in Frostbite Peaks' },
+  { file: 'clips/castle-grand-hall-chip-fire-double.jpg', alt: 'A fire trail across the long fairway of the Cloudspire Keep castle' },
 ]
 
-const hero = { file: 'chip-hop_cannon-crossing.mp4', poster: 'shot-chip-hop_cannon-crossing.jpg' }
-
-const clips = [
-  { file: 'chip-hop_ramp-jump.mp4', poster: 'shot-chip-hop_ramp-jump.jpg', label: 'Hop the ramp' },
-  { file: 'magnet-effect.mp4', poster: 'shot-chip-hop_windmill-alley.jpg', label: 'Cup Magnet' },
-  { file: 'wind-blast_double-hop.mp4', poster: 'shot-wind-blast_double-hop.jpg', label: 'Double hop' },
-]
+const hero = {
+  file: 'clips/frostbite-frozen-hairpin-chip-fire-double.mp4',
+  poster: 'clips/frostbite-frozen-hairpin-chip-fire-double.jpg',
+}
 
 // A visual for the Overtime section: stages get longer while the bank gets smaller.
 const overtime = [5, 4.3, 3.6, 3, 2.4, 1.9, 1.4, 1]
@@ -94,7 +92,7 @@ const overtime = [5, 4.3, 3.6, 3, 2.4, 1.9, 1.4, 1]
             loop
             playsinline
             preload="metadata"
-            aria-label="Gameplay: a chip shot over a gap onto the green"
+            aria-label="Gameplay: a chip, fire boost and double shot combo sinking a hole-in-one in Frostbite Peaks"
           >
             <source :src="`${base}/${hero.file}`" type="video/mp4" />
           </video>
@@ -129,23 +127,12 @@ const overtime = [5, 4.3, 3.6, 3, 2.4, 1.9, 1.4, 1]
     <!-- Clips -->
     <section class="wrap sec" aria-labelledby="clips-h">
       <h2 id="clips-h">The payoff</h2>
-      <p class="sec-lead">Chip over water. Hop a ramp. Drag the cup toward you. Nobody said it had to be fair.</p>
-      <div class="clips">
-        <figure v-for="c in clips" :key="c.file">
-          <video
-            :poster="`${base}/${c.poster}`"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="none"
-            :aria-label="c.label"
-          >
-            <source :src="`${base}/${c.file}`" type="video/mp4" />
-          </video>
-          <figcaption>{{ c.label }}</figcaption>
-        </figure>
-      </div>
+      <p class="sec-lead">
+        Every one of these is a hole-in-one that only works because of the cards in the hand. Light the fuse, chip it
+        over the water, then hit it again in mid-air. The castle ones need a fully upgraded build, so they take a lot of
+        losing to earn.
+      </p>
+      <ClipReel :clips="clips" />
     </section>
 
     <!-- Overtime -->
@@ -373,28 +360,6 @@ const overtime = [5, 4.3, 3.6, 3, 2.4, 1.9, 1.4, 1]
 .steps p {
   margin: 0;
   color: var(--ink-soft);
-}
-
-.clips {
-  display: grid;
-  gap: 18px;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
-}
-.clips figure {
-  margin: 0;
-}
-.clips video {
-  width: 100%;
-  aspect-ratio: 9 / 16;
-  object-fit: cover;
-  border-radius: var(--radius);
-  background: var(--rd-green-deep);
-  box-shadow: var(--shadow);
-}
-.clips figcaption {
-  margin-top: 8px;
-  font-weight: 700;
-  text-align: center;
 }
 
 /* ---------- Overtime ---------- */

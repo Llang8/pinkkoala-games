@@ -98,15 +98,15 @@ const values = [
         <div class="feat-art">
           <div class="phone">
             <video
-              poster="/games/rough-day/shot-chip-hop_ramp-jump.jpg"
+              poster="/games/rough-day/clips/castle-grand-hall-chip-fire-double.jpg"
               autoplay
               muted
               loop
               playsinline
               preload="metadata"
-              aria-label="Rough Day gameplay: hopping a ramp onto the green"
+              aria-label="Rough Day gameplay: a chip, fire boost and double shot combo sinking a hole-in-one in the castle"
             >
-              <source src="/games/rough-day/chip-hop_ramp-jump.mp4" type="video/mp4" />
+              <source src="/games/rough-day/clips/castle-grand-hall-chip-fire-double.mp4" type="video/mp4" />
             </video>
           </div>
           <div class="fan" aria-hidden="true">
