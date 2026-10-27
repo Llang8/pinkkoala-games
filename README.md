@@ -50,3 +50,5 @@ To add a game: add an entry to `games.ts`, then create `app/pages/games/<slug>/i
 - Rough Day screenshots (public/games/rough-day/ui-*.jpg) and the gallery frames are low-res placeholders captured from the dev build and trick-shot clips; swap in proper phone screenshots (Android and iOS) before launch.
 - `app/pages/terms/index.vue`: every `[CHECK]` (legal name and country, governing law, payments/ads wording).
 - `app/lib/bossModels.js` is a copy of the game's boss models (`src/course/bossModels.js` plus the Groundskeeper from `CourseBuilder.js`) used by the three.js boss stage. Re-copy it if the game's bosses change.
+- Power card data and art (`app/data/cards.generated.ts`) is generated from the game repo. After the game's power-ups change, run `node scripts/sync-cards.mjs ../mini-golf-test`. Combo pairs shown in the build lab are hand-written in `app/data/combos.ts`.
+- `public/games/rough-day/ui-*.jpg` were captured from a phone-size headless Chrome run of the dev build. Replace with store-quality screenshots before launch.

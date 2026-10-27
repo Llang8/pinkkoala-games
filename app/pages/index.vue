@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { site } from '~/data/site'
 import { games, gamePath, statusLabel } from '~/data/games'
+import { powerCards } from '~/data/cards.generated'
+
+const fan = ['chip-shot', 'piggy-bank', 'second-wind'].map((id) => powerCards.find((c) => c.id === id)!)
 
 useSeoMeta({
   title: `${site.name}: ${site.tagline}`,
@@ -13,7 +16,7 @@ useSeoMeta({
 
 const featured = games[0]!
 const more = games.slice(1)
-const ribbon = ['Small games', 'Big grudges', 'Made with care', 'A little spite', 'Quick to pick up', 'Hard to put down']
+const ribbon = ['Small games', 'Big grudges', 'Draft your hand', 'Stack the combos', 'Made with care', 'A little spite', 'Quick to pick up', 'Hard to put down']
 
 const values = [
   {
@@ -84,8 +87,8 @@ const values = [
           <h2 id="featured-h">{{ featured.title }}</h2>
           <p class="sub">{{ featured.subtitle }} &middot; {{ featured.platforms.join(' + ') }}</p>
           <p>
-            Forty years the old Groundskeeper has kept this meadow perfect, and he is not about to let you scuff it. One
-            shared bank of strokes, forty holes, and a power-up for every bad idea.
+            Every run is a build. Draft power cards, stack combos and stretch one shared bank of strokes across forty
+            holes, all under the glare of a very grumpy Groundskeeper. It always ends. The question is how far you get.
           </p>
           <div class="feat-actions">
             <NuxtLink class="btn red" :to="gamePath(featured.slug)">See the game</NuxtLink>
@@ -106,7 +109,9 @@ const values = [
               <source src="/games/rough-day/chip-hop_ramp-jump.mp4" type="video/mp4" />
             </video>
           </div>
-          <img class="app-icon" src="/games/rough-day/icon.png" alt="" width="84" height="84" />
+          <div class="fan" aria-hidden="true">
+            <PowerCard v-for="c in fan" :key="c.id" :card="c" compact :tilt="false" />
+          </div>
         </div>
       </article>
     </section>
@@ -445,16 +450,30 @@ h1 {
   height: 100%;
   object-fit: cover;
 }
-.app-icon {
+.fan {
   position: absolute;
-  left: 4%;
-  bottom: 6%;
-  width: 84px;
-  height: 84px;
-  border-radius: 20px;
-  border: 3px solid #fff;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
-  transform: rotate(-8deg);
+  left: -2%;
+  bottom: 2%;
+  display: flex;
+  width: 64%;
+}
+.fan > * {
+  flex: none;
+  width: 52%;
+}
+.fan > :nth-child(1) {
+  transform: rotate(-12deg) translateY(10px);
+  z-index: 1;
+}
+.fan > :nth-child(2) {
+  margin-left: -16%;
+  transform: rotate(-1deg);
+  z-index: 2;
+}
+.fan > :nth-child(3) {
+  margin-left: -16%;
+  transform: rotate(11deg) translateY(10px);
+  z-index: 3;
 }
 
 /* ---------- Values ---------- */

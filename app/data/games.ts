@@ -17,7 +17,7 @@ export const games: Game[] = [
     slug: 'rough-day',
     title: 'Rough Day',
     subtitle: 'Roguelite Mini Golf',
-    tagline: 'One stroke bank. Forty holes. One very grumpy Groundskeeper.',
+    tagline: 'Draft power cards. Stack combos. Outlast the Groundskeeper.',
     platforms: ['Android', 'iOS'],
     // PLACEHOLDER: paste the real listing URLs when each store goes live.
     // Play listing will be https://play.google.com/store/apps/details?id=com.lucas.roughday

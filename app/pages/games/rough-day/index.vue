@@ -8,7 +8,7 @@ const base = '/games/rough-day'
 
 const title = 'Rough Day: Roguelite Mini Golf'
 const description =
-  'Share one stroke bank across every hole, buy power-ups that level up, and escape the grumpy Groundskeeper. A roguelite mini golf game for Android and iOS.'
+  'Draft power cards, stack combos and spend one shared bank of strokes across forty holes. A roguelite mini golf game where every run is a build, for Android and iOS.'
 
 useSeoMeta({
   title,
@@ -24,21 +24,16 @@ useHead({ link: [{ rel: 'canonical', href: `${site.url}${base}/` }] })
 const steps = [
   { n: 1, h: 'Pull back, let go', p: 'Slingshot your ball. The camera turns to face your aim, and a longer pull gives you fine control over speed.' },
   { n: 2, h: 'Spend from one bank', p: 'Every putt costs a stroke from a single bank shared by the whole course. A reckless shot now is a stroke you will not have later.' },
-  { n: 3, h: 'Lose. Learn. Go again.', p: 'Run out and it is dawn again, same meadow, same mower. Every rough day teaches you something.' },
+  { n: 3, h: 'Draft your hand', p: 'Visit the Pro Shop after holes 3, 6 and 9, or grab a free pick. Your hand holds three cards, so every new one means leaving another behind.' },
+  { n: 4, h: 'Beat the boss', p: 'Every stage ends at a boss gate. Strike every padlock to get through, then do it all again, a little harder.' },
 ]
 
-const powerups = [
-  ['Chip Shot', 'Lob over water and rails'],
-  ['Hop', 'Hop over obstacles'],
-  ['Cup Magnet', 'Drag the cup closer'],
-  ['Laser Sight', 'Line up the perfect shot'],
-  ['Big Cup', 'A hole you cannot miss. Almost.'],
-  ['Long Drive', 'Hit harder'],
-  ['Double Shot', 'A second hit, mid-flight'],
-  ['Fire Boost', 'Set the ball ablaze for a burst of speed'],
-  ['Lifebuoy', 'Float over a splash'],
-  ['Second Wind', 'Win strokes back after each hole'],
-  ['Lucky Clover', 'Hope for the best'],
+const between = [
+  { h: 'Silver', p: 'Beat bosses and spot rare silver coins. Silver is permanent, even when the run is not.', tone: 'sky' },
+  { h: 'Upgrades', p: 'Spend silver to start every run with a card, and buy it again to level it up. You can only equip three, so you are choosing a build before the run begins.', tone: 'sun' },
+  { h: 'Extra Slot', p: 'A rare, very expensive upgrade that lets you carry a fourth card. Fit that in your build.', tone: 'mint' },
+  { h: 'Easy, Normal or Hard', p: 'Pick before every run. Harder runs start with fewer strokes and pay much more silver.', tone: 'pink' },
+  { h: 'The Locker', p: 'Ball skins, hats and trails to spend your coins on. Yours to keep, whatever happens to the run.', tone: 'mint' },
 ]
 
 const stages = [
@@ -49,16 +44,15 @@ const stages = [
 ]
 
 const shots = [
-  { file: 'ui-course.jpg', alt: 'A course overview in the Meadow with the stroke and coin counters at the top' },
-  { file: 'ui-menu.jpg', alt: 'The Rough Day main menu with Continue, New Run, How to Play, Upgrades and Locker' },
-  { file: 'ui-shop.jpg', alt: 'The Pro Shop offering Big Cup, Second Wind and Chip Shot power-ups' },
-  { file: 'ui-upgrades.jpg', alt: 'The Upgrades screen where silver buys permanent power-ups' },
+  { file: 'ui-run.jpg', alt: 'A meadow hole with stroke and coin counters, and two power card buttons in the corner' },
+  { file: 'ui-pick.jpg', alt: 'The free pick: choose one of three power cards, with Upgrade tags on cards you already own' },
+  { file: 'ui-shop.jpg', alt: 'The Pro Shop showing power cards with prices, and how many of your power-up slots are in use' },
+  { file: 'ui-difficulty.jpg', alt: 'Choosing Easy, Normal or Hard before a run' },
+  { file: 'ui-menu.jpg', alt: 'The Rough Day main menu with the grumpy Groundskeeper looming behind it' },
   { file: 'shot-chip-hop_ramp-jump.jpg', alt: 'A bright meadow hole with a ramp, trees and a pond' },
-  { file: 'shot-chip-hop_rock-garden.jpg', alt: 'A meadow hole guarded by a windmill' },
   { file: 'shot-chip-hop_millstone.jpg', alt: 'An autumn orchard hole with amber trees and a pond' },
   { file: 'shot-chip-hop_crevasse-blizzard.jpg', alt: 'An icy green under the northern lights in the Frostbite Peaks' },
   { file: 'shot-chip-hop_cannon-crossing.jpg', alt: 'A winding frozen fairway with a red flag at the end' },
-  { file: 'shot-chip-hop_windmill-alley.jpg', alt: 'A meadow fairway with a ball rolling toward the cup' },
 ]
 
 const hero = { file: 'chip-hop_cannon-crossing.mp4', poster: 'shot-chip-hop_cannon-crossing.jpg' }
@@ -68,6 +62,9 @@ const clips = [
   { file: 'magnet-effect.mp4', poster: 'shot-chip-hop_windmill-alley.jpg', label: 'Cup Magnet' },
   { file: 'wind-blast_double-hop.mp4', poster: 'shot-wind-blast_double-hop.jpg', label: 'Double hop' },
 ]
+
+// A visual for the Overtime section: stages get longer while the bank gets smaller.
+const overtime = [5, 4.3, 3.6, 3, 2.4, 1.9, 1.4, 1]
 </script>
 
 <template>
@@ -79,9 +76,10 @@ const clips = [
           <img :src="`${base}/icon.png`" alt="" width="96" height="96" class="app-icon" />
           <p class="kicker">{{ game.subtitle }}</p>
           <h1>Rough Day</h1>
+          <p class="strap">Every run is a build.</p>
           <p class="lead">
-            Forty years the old Groundskeeper has kept this meadow perfect, and he is not about to let you scuff it.
-            One shared bank of strokes. Waste them and it is dawn again.
+            Draft power cards, stack combos and spend one shared bank of strokes across forty holes. Forty years the old
+            Groundskeeper has kept this meadow perfect, and he is not about to let you scuff it.
           </p>
           <div class="cta">
             <StoreButtons :game="game" />
@@ -104,9 +102,9 @@ const clips = [
       </div>
     </section>
 
-    <!-- How it plays -->
+    <!-- How a run works -->
     <section class="wrap sec" aria-labelledby="how-h">
-      <h2 id="how-h">How it plays</h2>
+      <h2 id="how-h">How a run works</h2>
       <ol class="steps">
         <li v-for="s in steps" :key="s.n">
           <span class="num" aria-hidden="true">{{ s.n }}</span>
@@ -114,11 +112,23 @@ const clips = [
           <p>{{ s.p }}</p>
         </li>
       </ol>
+      <p class="sec-lead tail">Run out of strokes and it is dawn again, same meadow, same mower. Lose. Learn. Go again.</p>
+    </section>
+
+    <!-- Build lab -->
+    <section class="wrap sec" aria-labelledby="build-h">
+      <h2 id="build-h">Three slots. Thirteen cards. One build.</h2>
+      <p class="sec-lead">
+        You can only carry three power cards at a time. Every card you take means leaving another behind, so the question
+        is never what is strong. It is what works together. Cards level up when you find them again, cheap and modest at
+        first, and ridiculous at the top. Build a hand and see what clicks.
+      </p>
+      <BuildLab />
     </section>
 
     <!-- Clips -->
     <section class="wrap sec" aria-labelledby="clips-h">
-      <h2 id="clips-h">Shots worth sharing</h2>
+      <h2 id="clips-h">The payoff</h2>
       <p class="sec-lead">Chip over water. Hop a ramp. Drag the cup toward you. Nobody said it had to be fair.</p>
       <div class="clips">
         <figure v-for="c in clips" :key="c.file">
@@ -138,38 +148,62 @@ const clips = [
       </div>
     </section>
 
-    <!-- Power-ups -->
-    <section class="wrap sec" aria-labelledby="pu-h">
-      <h2 id="pu-h">Power-ups that level up</h2>
-      <p class="sec-lead">
-        Visit the Pro Shop after holes 3, 6 and 9. Pick up a power-up again and it upgrades, so no two runs build the
-        same.
-      </p>
-      <ul class="pu">
-        <li v-for="[name, blurb] in powerups" :key="name">
-          <strong>{{ name }}</strong>
-          <span>{{ blurb }}</span>
-        </li>
-      </ul>
-      <div class="extras">
+    <!-- Overtime -->
+    <section class="overtime" aria-labelledby="ot-h">
+      <div class="wrap ot-grid">
         <div>
-          <h3>Cannon pads</h3>
-          <p>Some gaps are too wide to putt. Roll onto a glowing pad, aim the cannon and fire. The lob is free.</p>
+          <p class="ot-kicker">After the castle</p>
+          <h2 id="ot-h">It always ends.</h2>
+          <p>
+            Clear the final boss and the course does not stop. Overtime begins: ten more holes and another boss, again and
+            again, with holes that keep getting longer and a stroke bank that keeps getting smaller.
+          </p>
+          <p>
+            Even a perfect build runs dry eventually. The only question is how far yours carries you. Your furthest stage
+            and most holes are saved, so there is always a number to beat.
+          </p>
         </div>
-        <div>
-          <h3>Mulligans</h3>
-          <p>Out of strokes on the last shot? Spend a Mulligan to take it back and try again.</p>
+        <div class="chart" role="img" aria-label="A chart of Overtime stages: each stage has less room for strokes than the last">
+          <p class="chart-title">Strokes you can spare</p>
+          <div class="bars">
+            <div v-for="(h, i) in overtime" :key="i" class="bar-col">
+              <span class="bar" :style="{ height: `${h * 18}%` }" />
+              <span class="bar-n">{{ i + 1 }}</span>
+            </div>
+          </div>
+          <p class="chart-foot">Overtime stage</p>
         </div>
-        <div>
-          <h3>Boss gates</h3>
-          <p>Every stage ends at a boss gate. Strike every padlock to open it, with bonus strokes waiting beyond.</p>
+      </div>
+    </section>
+
+    <!-- Between runs -->
+    <section class="wrap sec" aria-labelledby="between-h">
+      <h2 id="between-h">Every loss pays something</h2>
+      <div class="between-grid">
+        <div class="between-list">
+          <article v-for="b in between" :key="b.h" class="b-card" :class="b.tone">
+            <h3>{{ b.h }}</h3>
+            <p>{{ b.p }}</p>
+          </article>
         </div>
+        <img
+          class="between-shot"
+          :src="`${base}/ui-difficulty.jpg`"
+          alt="Choosing Easy, Normal or Hard before a run"
+          width="300"
+          height="649"
+          loading="lazy"
+        />
       </div>
     </section>
 
     <!-- Stages -->
     <section class="wrap sec" aria-labelledby="stages-h">
       <h2 id="stages-h">Four stages, forty holes</h2>
+      <p class="sec-lead">
+        Every course is built from hand-made set pieces, so no two runs play the same: moving ferries, aimed ballistas,
+        frozen lakes that crack under a stopped ball, pipes, crumbling footing and more.
+      </p>
       <div class="stages">
         <article v-for="(s, i) in stages" :key="s.name">
           <span class="stage-n">Stage {{ i + 1 }}</span>
@@ -196,16 +230,6 @@ const clips = [
           <img :src="`${base}/${s.file}`" :alt="s.alt" width="270" height="480" loading="lazy" />
         </li>
       </ul>
-    </section>
-
-    <!-- Meta rows -->
-    <section class="wrap sec" aria-labelledby="more-h">
-      <h2 id="more-h">Keep and collect</h2>
-      <p class="sec-lead">
-        Beat bosses and spot rare silver coins to earn silver, then spend it on permanent upgrades from the main menu so
-        every new run starts stronger. Spend your coins on ball skins, from polka dots and pinstripes to gold, galaxy and
-        ember trails. Skins are yours to keep, whatever happens to the run.
-      </p>
     </section>
 
     <section class="closer">
@@ -266,7 +290,12 @@ const clips = [
 }
 .hero h1 {
   font-size: clamp(3.4rem, 12vw, 6.5rem);
-  margin-bottom: 0.2em;
+  margin-bottom: 0.1em;
+}
+.strap {
+  margin: 0 0 14px;
+  font: 400 clamp(1.5rem, 4vw, 2.1rem) / 1.1 var(--font-display);
+  color: #ffe49a;
 }
 .lead {
   font-size: 1.2rem;
@@ -274,10 +303,6 @@ const clips = [
   color: #e9f3e6;
 }
 .cta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  align-items: center;
   margin-top: 24px;
 }
 .hero :deep(.btn) {
@@ -312,9 +337,12 @@ const clips = [
   padding-block: clamp(32px, 6vw, 56px);
 }
 .sec-lead {
-  max-width: 40em;
+  max-width: 42em;
   color: var(--ink-soft);
   font-size: 1.1rem;
+}
+.sec-lead.tail {
+  margin: 18px 0 0;
 }
 
 .steps {
@@ -323,7 +351,7 @@ const clips = [
   margin: 0;
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
 }
 .steps li {
   background: var(--surface);
@@ -369,35 +397,127 @@ const clips = [
   text-align: center;
 }
 
-.pu {
-  list-style: none;
-  padding: 0;
-  margin: 24px 0 32px;
-  display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+/* ---------- Overtime ---------- */
+.overtime {
+  margin-block: clamp(24px, 5vw, 48px);
+  background: #1b1428;
+  color: #f3eaff;
+  padding-block: clamp(40px, 7vw, 80px);
 }
-.pu li {
+.ot-grid {
+  display: grid;
+  gap: 36px;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+}
+.ot-kicker {
+  margin: 0 0 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #ffb3d1;
+}
+.overtime h2 {
+  font-size: clamp(2.6rem, 8vw, 4.6rem);
+  color: #fff;
+}
+.overtime p {
+  max-width: 34em;
+  color: #d9ccee;
+}
+.chart {
+  padding: 20px;
+  border: 3px solid #ff7fb2;
+  border-radius: 22px;
+  background: #261b38;
+  box-shadow: 6px 6px 0 #ff7fb2;
+}
+.chart-title,
+.chart-foot {
+  margin: 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffb3d1 !important;
+}
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 180px;
+  margin: 14px 0 8px;
+}
+.bar-col {
+  flex: 1;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding: 14px 16px;
-  background: var(--surface);
-  border-left: 6px solid var(--rd-flag);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
 }
-.pu span {
-  color: var(--ink-soft);
-  font-size: 0.95rem;
+.bar {
+  width: 100%;
+  border-radius: 8px 8px 2px 2px;
+  background: linear-gradient(180deg, #ff9cc4, #d6377a);
 }
-.extras {
+.bar-n {
+  font: 400 0.95rem/1 var(--font-display);
+  color: #d9ccee;
+}
+
+/* ---------- Between runs ---------- */
+.between-grid {
   display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 32px;
+  grid-template-columns: 1fr auto;
+  align-items: start;
 }
-.extras p {
-  color: var(--ink-soft);
+.between-list {
+  display: grid;
+  gap: 14px;
+}
+.b-card {
+  padding: 16px 20px;
+  border-radius: 18px;
+  border: 3px solid #3b1f33;
+  box-shadow: 5px 5px 0 #3b1f33;
+  color: #3b1f33;
+}
+.b-card h3 {
+  margin: 0 0 0.2em;
+}
+.b-card p {
+  margin: 0;
+}
+.b-card.sky {
+  background: #cfe6ff;
+}
+.b-card.sun {
+  background: #ffe49a;
+}
+.b-card.mint {
+  background: #bff0d4;
+}
+.b-card.pink {
+  background: #ffc4dc;
+}
+.between-shot {
+  width: min(300px, 38vw);
+  height: auto;
+  border-radius: 28px;
+  border: 6px solid #10240f;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.35);
+  transform: rotate(2deg);
+}
+@media (prefers-color-scheme: dark) {
+  .b-card {
+    border-color: #ff7fb2;
+    box-shadow: 5px 5px 0 #ff7fb2;
+  }
 }
 
 .stages {
@@ -471,13 +591,20 @@ const clips = [
   font-size: 0.95rem;
 }
 
-@media (max-width: 760px) {
-  .hero-grid {
+@media (max-width: 820px) {
+  .hero-grid,
+  .ot-grid,
+  .between-grid {
     grid-template-columns: 1fr;
   }
   .phone {
     transform: none;
     width: min(70%, 260px);
+  }
+  .between-shot {
+    width: min(70%, 280px);
+    justify-self: center;
+    transform: none;
   }
 }
 </style>
