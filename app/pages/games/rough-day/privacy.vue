@@ -117,8 +117,11 @@ useSeoMeta({
 
     <h2>Children</h2>
     <p>
-      Rough Day is a general-audience game. It is not directed at children under 13 and we do not knowingly collect data
-      from them.
+      Rough Day is for players aged 13 and over. It is not directed at children under 13 and we do not knowingly
+      collect data from them. If you are a parent or guardian and think a child under 13 has used the game, email
+      <a :href="`mailto:${site.email}`">{{ site.email }}</a> and we will delete what we can find. Some countries set a
+      higher age than 13 at which a person can agree to data processing on their own; we handle analytics for players in
+      those countries as described in "Your rights" below.
     </p>
 
     <h2>How long we keep data</h2>
@@ -145,7 +148,7 @@ useSeoMeta({
     </p>
     <h3>Changelog</h3>
     <ul>
-      <li>{{ site.privacyUpdated }}: added crash reports (Firebase Crashlytics); described the opt-out and the saved data more exactly.</li>
+      <li>{{ site.privacyUpdated }}: stated that Rough Day is for ages 13 and over and added a parent contact; added crash reports (Firebase Crashlytics); described the opt-out and the saved data more exactly.</li>
       <li>2026-10-25: first draft.</li>
     </ul>
   </div>

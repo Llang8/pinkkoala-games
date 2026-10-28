@@ -30,6 +30,12 @@ useSeoMeta({
       ("we", "us"). Contact: <a :href="`mailto:${site.email}`">{{ site.email }}</a>.
     </p>
 
+    <h2>Who can play</h2>
+    <p>
+      Rough Day is for players aged 13 and over. If you are under 18, please check with a parent or guardian before you
+      install it. Where the law of your country sets a higher minimum age for using an app like this, that age applies.
+    </p>
+
     <h2>Using the games</h2>
     <p>
       We give you a personal, non-exclusive, non-transferable, revocable licence to install and play our games on
@@ -128,7 +134,7 @@ useSeoMeta({
 
     <h3>Changelog</h3>
     <ul>
-      <li>{{ site.privacyUpdated }}: first draft.</li>
+      <li>{{ site.privacyUpdated }}: added who can play (13 and over).</li>
     </ul>
   </div>
 </template>
