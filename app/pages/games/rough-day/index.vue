@@ -115,11 +115,12 @@ const overtime = [5, 4.3, 3.6, 3, 2.4, 1.9, 1.4, 1]
 
     <!-- Build lab -->
     <section class="wrap sec" aria-labelledby="build-h">
-      <h2 id="build-h">Three slots. Thirteen cards. One build.</h2>
+      <h2 id="build-h">Three slots. Fourteen cards. One build.</h2>
       <p class="sec-lead">
         You can only carry three power cards at a time. Every card you take means leaving another behind, so the question
         is never what is strong. It is what works together. Cards level up when you find them again, cheap and modest at
-        first, and ridiculous at the top. Build a hand and see what clicks.
+        first, and ridiculous at the top. Ace Hunter pays strokes back for hole-in-ones, so it only earns its slot if
+        you can hit them. Build a hand and see what clicks.
       </p>
       <BuildLab />
     </section>
