@@ -26,7 +26,7 @@ useSeoMeta({
 
     <h2>Who we are</h2>
     <p>
-      The Services are provided by {{ site.name }}, <mark>[CHECK: legal name, and country or state of residence]</mark>
+      The Services are provided by {{ site.name }}, an independent game studio based in Wisconsin, United States
       ("we", "us"). Contact: <a :href="`mailto:${site.email}`">{{ site.email }}</a>.
     </p>
 
@@ -53,7 +53,7 @@ useSeoMeta({
       app or clearing its data deletes your progress, and we cannot restore it.
     </p>
     <p>
-      <mark>[CHECK]</mark> If we add ads or in-app purchases, they will be handled by Google Play and the Apple App
+      If we add ads or in-app purchases, they will be handled by Google Play and the Apple App
       Store under their own terms, including their refund rules. We will update these terms and the privacy policy when
       that happens.
     </p>
@@ -75,8 +75,7 @@ useSeoMeta({
     <p>
       If you get a game from the Apple App Store or Google Play, you also agree to that store's terms. Apple and Google
       are not responsible for the game, its maintenance or support, or for any claims about it. Those come to us.
-      <mark>[CHECK]</mark> Unless we publish a custom licence, Apple's standard End User Licence Agreement applies to
-      iOS downloads.
+      Unless we publish a custom licence, Apple's standard End User Licence Agreement applies to iOS downloads.
     </p>
 
     <h2>Availability and changes to the games</h2>
@@ -110,7 +109,7 @@ useSeoMeta({
 
     <h2>Governing law</h2>
     <p>
-      These terms are governed by the laws of <mark>[CHECK: country or state]</mark>, and its courts can hear disputes,
+      These terms are governed by the laws of the State of Wisconsin, United States, and its courts can hear disputes,
       except that if you are a consumer you keep any right to use the courts and consumer protections of the place where
       you live.
     </p>

@@ -123,8 +123,8 @@ useSeoMeta({
 
     <h2>How long we keep data</h2>
     <p>
-      Firebase Analytics event data is kept for <mark>[CHECK: 2 or 14 months, whichever is set in the Firebase
-      console]</mark>. Data on your device is kept until you uninstall the app.
+      Firebase Analytics event data is kept for 14 months. Crash reports are kept by Firebase Crashlytics for 90 days.
+      Data on your device is kept until you uninstall the app.
     </p>
 
     <h2>Your rights</h2>
@@ -132,7 +132,7 @@ useSeoMeta({
       You can ask to access or delete data we hold about you, or object to its use. Email
       <a :href="`mailto:${site.email}`">{{ site.email }}</a>. Because the data is anonymous we may need an app-instance
       ID from you to find it. If you are in the EEA or UK, we process analytics on the basis of our legitimate interest
-      in improving the game, or your consent where required. <mark>[CHECK]</mark>
+      in improving the game, or your consent where required.
     </p>
 
     <h2>International transfers</h2>
