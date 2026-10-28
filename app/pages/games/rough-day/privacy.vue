@@ -30,6 +30,10 @@ useSeoMeta({
       <li>No accounts, sign-in, names, email addresses, phone numbers, contacts, photos, microphone or location.</li>
       <li>Your progress and settings stay on your device.</li>
       <li>
+        The first time you open the game it asks how old you are (Under 13, 13 to 17, or 18 or older). Your answer stays
+        on your device. Nothing is collected before you answer, and nothing at all is collected for players under 13.
+      </li>
+      <li>
         The Rough Day mobile app uses Google Firebase Analytics to learn how the game is played, and Firebase
         Crashlytics to find out when it crashes, so we can balance and fix it. You can turn both off in the game's
         settings.
@@ -50,6 +54,11 @@ useSeoMeta({
           </td>
           <td>So the game remembers you</td>
           <td>On your device only. Uninstalling the app deletes it.</td>
+        </tr>
+        <tr>
+          <td>Your age bracket (Under 13, 13 to 17, or 18 or older), which you choose on first launch</td>
+          <td>To decide whether the game may collect analytics and crash reports</td>
+          <td>On your device only. It is never sent to us or to Google.</td>
         </tr>
         <tr>
           <td>
@@ -94,8 +103,14 @@ useSeoMeta({
 
     <h2>Analytics, crash reports and how to opt out</h2>
     <p>
-      Analytics and crash reports are on when you first open the game. You can turn both off at any time in the game's
-      settings ("Share usage data"). The choice is remembered, and nothing is sent while it is off.
+      The first time you open the game it asks how old you are. Until you answer, nothing is collected. If you say you
+      are under 13, analytics and crash reports stay off for good and you can keep playing. If you say 13 to 17 or 18 or
+      older, they switch on, and you can turn both off at any time in the game's settings ("Share usage data"). You can
+      also change your age answer in settings; choosing under 13 turns collection off straight away and locks it off.
+      Your choices are remembered, and nothing is sent while collection is off.
+    </p>
+    <p>
+      The age question is a statement from you; we do not check it.
     </p>
 
     <h2>Third parties</h2>
@@ -112,16 +127,18 @@ useSeoMeta({
       AdMob may collect the advertising ID (Android) or IDFA (iOS, only if you allow it in Apple's tracking prompt) and
       related data. Players in the EEA, UK and Switzerland are asked for consent through Google's User Messaging
       Platform. You can reset your advertising ID or opt out of personalisation in your device settings. No ads are
-      shown in a player's first session.
+      shown in a player's first session. Say here what the game's age answer changes for ads (no ads and no advertising
+      ID for players under 13; limited, non-personalised ads for 13 to 17); it must match src/age.js in the game repo.
     -->
 
     <h2>Children</h2>
     <p>
-      Rough Day is for players aged 13 and over. It is not directed at children under 13 and we do not knowingly
-      collect data from them. If you are a parent or guardian and think a child under 13 has used the game, email
-      <a :href="`mailto:${site.email}`">{{ site.email }}</a> and we will delete what we can find. Some countries set a
-      higher age than 13 at which a person can agree to data processing on their own; we handle analytics for players in
-      those countries as described in "Your rights" below.
+      Rough Day is for players aged 13 and over. It is not directed at children under 13, and a player who says they are
+      under 13 in the game's age question is not tracked at all: no analytics and no crash reports. We do not knowingly
+      collect data from children under 13. If you are a parent or guardian and think a child under 13 has used the
+      game, email <a :href="`mailto:${site.email}`">{{ site.email }}</a> and we will delete what we can find. Some
+      countries set a higher age than 13 at which a person can agree to data processing on their own; we handle
+      analytics for players in those countries as described in "Your rights" below.
     </p>
 
     <h2>How long we keep data</h2>
@@ -148,7 +165,7 @@ useSeoMeta({
     </p>
     <h3>Changelog</h3>
     <ul>
-      <li>{{ site.privacyUpdated }}: stated that Rough Day is for ages 13 and over and added a parent contact; added crash reports (Firebase Crashlytics); described the opt-out and the saved data more exactly.</li>
+      <li>{{ site.privacyUpdated }}: the game now asks the player's age on first launch and collects nothing before the answer or for players under 13 (the answer stays on the device); stated that Rough Day is for ages 13 and over and added a parent contact; added crash reports (Firebase Crashlytics); described the opt-out and the saved data more exactly.</li>
       <li>2026-10-25: first draft.</li>
     </ul>
   </div>
