@@ -5,8 +5,8 @@ export const site = {
   tagline: 'Small games, made with care and a little spite.',
   description:
     'PinkKoala is an independent game studio and publisher. First up: Rough Day, a roguelite mini golf game where every run is a build, for Android and iOS.',
-  // PLACEHOLDER: set up this mailbox (or change it) before launch. Shown publicly.
-  email: 'hello@pinkkoala.games',
+  // Porkbun email forwarding to the studio inbox (set up 2026-10-27). Shown publicly.
+  email: 'support@pinkkoala.games',
   // PLACEHOLDER: the privacy policy is a draft until you have reviewed it. Set to false to remove the banner.
   privacyIsDraft: true,
   privacyUpdated: '2026-10-25',
